@@ -2,15 +2,24 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class DataAccess {
+
   Future<Database> getDatabase() async {
-    return openDatabase(
+    return await openDatabase(
       join(await getDatabasesPath(), 'flashcard_database.db'),
-      onCreate: (db, version) async {
-        await db.execute('CREATE TABLE sets(id INTEGER AUTO_INCREMENT PRIMARY KEY, title TEXT, color TEXT)');
+      onCreate: (db, _) async {
+        await db.execute('CREATE TABLE sets(title TEXT PRIMARY KEY NOT NULL, color TEXT)');
         await db.execute(
-            'CREATE TABLE cards(id INTEGER AUTO_INCREMENT PRIMARY KEY, setId INTEGER, definition TEXT, description TEXT, box INTEGER, FOREIGN KEY(setId) REFERENCES sets(id) ON DELETE CASCADE)');
+            'CREATE TABLE cards(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, setTitle TEXT, definition TEXT, description TEXT, box INTEGER, lastTimeUsed TEXT, FOREIGN KEY(setTitle) REFERENCES sets(title) ON DELETE CASCADE)');
+        print('Database succesfully created');
       },
       version: 1,
     );
+  }
+
+  Future<void> delete() async {
+    await deleteDatabase(
+      join(await getDatabasesPath(), 'flashcard_database.db'),
+    );
+    print('Database succesfully deleted');
   }
 }

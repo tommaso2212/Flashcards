@@ -1,6 +1,6 @@
 import 'package:Flashcards/pages/homepage/HomePage.dart';
-import 'package:Flashcards/utils/ColorPalette.dart';
-import 'package:Flashcards/utils/CustomTextStyle.dart';
+import 'package:Flashcards/utils/style/ColorPalette.dart';
+import 'package:Flashcards/utils/style/CustomTextStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.light,
     ));
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     CustomTextStyle(window);
     return MaterialApp(
       title: 'Flashcard',
@@ -38,16 +39,22 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: CustomTextStyle.bodyText2,
+          unselectedLabelStyle: CustomTextStyle.bodyText2,
+          elevation: 20,
           showSelectedLabels: true,
           showUnselectedLabels: true,
+          selectedItemColor: ColorPalette.primaryColor,
+          unselectedItemColor: ColorPalette.primaryColor,
           selectedIconTheme: IconThemeData(
-            color: ColorPalette.primaryColor,
+            color: ColorPalette.secondaryColor,
           ),
           unselectedIconTheme: IconThemeData(
-            color: ColorPalette.grey,
+            color: ColorPalette.secondaryColor,
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:Flashcards/utils/ColorPalette.dart';
+import 'package:Flashcards/utils/style/ColorPalette.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';

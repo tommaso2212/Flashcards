@@ -1,0 +1,14 @@
+{
+    "title": "Fisica 1",
+    "color": "#1F6558",
+    "cards": [
+        {
+            "definition": "Metodo scientifico",
+            "description": "\text{Meteodo sviluppata di snipsi per questo quello e quell'altro} x=\frac{1}{2}"
+        },
+        {
+            "definition": "Formula x",
+            "description": "dio cane"
+        }
+    ]
+}
