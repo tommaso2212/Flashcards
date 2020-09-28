@@ -1,8 +1,11 @@
+import 'package:Flashcards/data/model/TestCard.dart';
 import 'package:Flashcards/pages/IViewModel.dart';
 import 'package:Flashcards/pages/stats/StatsViewModel.dart';
+import 'package:Flashcards/pages/test/TestPage.dart';
 import 'package:Flashcards/utils/BoxUtils.dart';
 import 'package:Flashcards/utils/style/ColorPalette.dart';
 import 'package:Flashcards/utils/style/CustomTextStyle.dart';
+import 'package:Flashcards/widget/CustomModal.dart';
 import 'package:Flashcards/widget/SetTile.dart';
 import 'package:flutter/material.dart';
 import 'package:Flashcards/data/model/Set.dart';
@@ -30,6 +33,17 @@ class Stats extends StatelessWidget {
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),
           ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                CustomModal.showConfirmDeleteModal(context, selectedSet.title);
+              },
+            )
+          ],
         ),
         body: CustomScrollView(
           slivers: [
@@ -51,14 +65,22 @@ class Stats extends StatelessWidget {
                         )
                       ]
                     : context
-                        .select<StatsViewModel, Map<Boxes, int>>((value) => value.boxes)
+                        .select<StatsViewModel, Map<Boxes, List<TestCard>>>((value) => value.boxes)
                         .entries
                         .map(
                           (e) => SetTile(
-                              title: BoxUtils.boxTitle[e.key],
-                              color: ColorPalette.fromHex(selectedSet.color),
-                              length: e.value,
-                              onTap: () {}),
+                            title: BoxUtils.boxTitle[e.key],
+                            color: ColorPalette.fromHex(selectedSet.color),
+                            length: e.value.length,
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => TestPage(
+                                  cards: e.value..shuffle(),
+                                  mode: TestMode.Overview,
+                                ),
+                              ),
+                            ),
+                          ),
                         )
                         .toList(),
               ),

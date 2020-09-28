@@ -1,53 +1,50 @@
-import 'dart:io';
+import 'package:Flashcards/widget/CustomIcons.dart';
 import 'package:flutter/material.dart';
 
 class CardSideA extends StatelessWidget {
-  final String title;
+  final String definition;
   final Color color;
-  final String image;
 
-  const CardSideA({@required this.title, @required this.color, @required this.image});
+  CardSideA({@required this.definition, @required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: Container(
+      decoration: BoxDecoration(
         color: color,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width * 0.2,
-              ),
-              child: Image.asset(
-                image,
-                height: 200,
-              ),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.05,
+        vertical: MediaQuery.of(context).size.height * 0.05,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            margin: EdgeInsets.only(
+              top: MediaQuery.of(context).size.width * 0.2,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.2,
-              ),
-              child: Text(
-                title.toUpperCase(),
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.white),
-              ),
+            child: Icon(
+              CustomIcons.vacuumTube,
+              color: Colors.white,
+              size: MediaQuery.of(context).size.width * 0.3,
             ),
-            Container(
-              margin: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.width * 0.2,
-              ),
-              child: Image.asset(
-                "res/images/logo.png",
-                height: 100,
-              ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.2,
             ),
-          ],
-        ),
+            child: Text(
+              definition.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline5.copyWith(color: Colors.white),
+            ),
+          ),
+          Container(),
+        ],
       ),
     );
   }

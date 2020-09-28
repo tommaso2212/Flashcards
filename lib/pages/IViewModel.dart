@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class IViewModel extends ChangeNotifier{
   States currentState;
@@ -7,7 +7,6 @@ class IViewModel extends ChangeNotifier{
     currentState = state;
     notifyListeners();
   }
-
 }
 
 enum States {

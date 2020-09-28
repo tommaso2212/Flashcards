@@ -16,7 +16,7 @@ packages:
     source: hosted
     version: "2.0.0"
   catex:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: catex
       url: "https://pub.dartlang.org"
@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.2.1"
+  flip_card:
+    dependency: "direct main"
+    description:
+      name: flip_card
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -116,6 +123,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  katex_flutter:
+    dependency: "direct main"
+    description:
+      name: katex_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.2+26"
   matcher:
     dependency: transitive
     description:
@@ -179,6 +193,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.0"
+  permission_handler:
+    dependency: "direct main"
+    description:
+      name: permission_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.1+1"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   platform:
     dependency: transitive
     description:

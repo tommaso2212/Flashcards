@@ -1,26 +1,32 @@
+import 'package:Flashcards/data/model/TestCard.dart';
 import 'package:Flashcards/pages/IViewModel.dart';
 import 'package:Flashcards/data/model/Set.dart';
 import 'package:Flashcards/utils/BoxUtils.dart';
+import 'package:Flashcards/utils/style/ColorPalette.dart';
 
-class StatsViewModel extends IViewModel{
+class StatsViewModel extends IViewModel {
+  Map<Boxes, List<TestCard>> boxes;
 
-  Map<Boxes, int> boxes;
-
-  StatsViewModel(Set selectedSet){
+  StatsViewModel(Set selectedSet) {
     init(selectedSet);
   }
 
   init(Set selectedSet) async {
     changeState(States.LOADING);
     boxes = {
-      Boxes.Box1:0,
-      Boxes.Box2:0,
-      Boxes.Box3:0,
-      Boxes.Box4:0,
-      Boxes.Box5:0,
+      Boxes.Box1: [],
+      Boxes.Box2: [],
+      Boxes.Box3: [],
+      Boxes.Box4: [],
+      Boxes.Box5: [],
     };
     selectedSet.cards.forEach((element) {
-      boxes[element.box] = boxes[element.box] +1;
+      boxes[element.box].add(
+        TestCard.fromCard(
+          element,
+          ColorPalette.fromHex(selectedSet.color),
+        ),
+      );
     });
     changeState(States.READY);
   }

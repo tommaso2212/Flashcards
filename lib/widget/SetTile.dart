@@ -1,4 +1,3 @@
-import 'package:Flashcards/utils/style/ColorPalette.dart';
 import 'package:Flashcards/utils/style/CustomTextStyle.dart';
 import 'package:Flashcards/widget/CustomIcons.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,10 @@ class SetTile extends StatelessWidget {
   final Color color;
   final int length;
   final Function onTap;
+  final Function onLongPress;
+  final bool isActive;
 
-  SetTile({this.title, this.color, this.length, this.onTap});
+  SetTile({this.title, this.color, this.length, this.onTap, this.onLongPress, this.isActive = true});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class SetTile extends StatelessWidget {
       ),
       child: RaisedButton(
         onPressed: onTap,
+        onLongPress: onLongPress,
         elevation: 10,
         padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.06,
@@ -42,6 +44,7 @@ class SetTile extends StatelessWidget {
                 color: color,
               ),
             ),
+            isActive ? 
             Row(
               children: [
                 Text(
@@ -54,7 +57,7 @@ class SetTile extends StatelessWidget {
                   CustomIcons.box,
                 ),
               ],
-            ),
+            ) : Icon(Icons.clear),
           ],
         ),
       ),

@@ -5,8 +5,8 @@ class Card {
   final String setTitle;
   final String definition;
   final String description;
-  final Boxes box;
-  final DateTime lastTimeUsed;
+  Boxes box;
+  DateTime lastTimeUsed;
 
   Card({this.id, this.setTitle, this.definition, this.description, this.box, this.lastTimeUsed,});
 
